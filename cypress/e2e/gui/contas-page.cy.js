@@ -4,6 +4,8 @@ import ContasPage from "../pages/contas_page"
 import LoginPage from "../pages/login_page"
 import locators from "../../support/locators_elements/locators"
 
+
+
 const url = Cypress.config("baseUrl")
 const email = Cypress.env('USERNAME')
 const senha = Cypress.env('PASSWORD')
@@ -15,13 +17,13 @@ const contasPage = new ContasPage()
 describe('Realizar teste funcional do cadastro e manipulação de contas', () => {
 
   beforeEach(() => {
-      cy.visit({
+    cy.visit({
       url: url,
       method: 'GET',
       failOnStatusCode: false
     })
-    cy.get(locators.LOGIN.USER).type(email)
-    cy.get(locators.LOGIN.PASSWORD).type(senha)
+    cy.get(locators.LOGIN.USER).type(email,{delay:0})
+    cy.get(locators.LOGIN.PASSWORD).type(senha,{delay:0})
     cy.get(locators.LOGIN.ENTRAR_BTN).click()
     loginPage.validarMessageBemVindo('Bem vindo')
 
@@ -29,27 +31,33 @@ describe('Realizar teste funcional do cadastro e manipulação de contas', () =>
 
   it.only('Validar inserir conta com sucesso', () => {
 
-    
-     cy.get(locators.MENU.ENGRENAGEM).invoke('show').click()
-     cy.get(locators.MENU.OPCAO_CONTAS).click()
-    
+
+    cy.get(locators.MENU.ENGRENAGEM).invoke('show').click()
+    cy.get(locators.MENU.OPCAO_CONTAS).click()
+
     cy.get(locators.CONTAS.TABELA_CONTAS).then($retorno => {
-     
-      const retorno_tabela = $retorno;
-     cy.log(retorno_tabela)
-      cy.wrap(retorno_tabela).should('contain', 'Conta goianinho 1')
 
-      if (retorno_tabela != null) {
-        cy.get(locators.CONTAS.DELETE_CONTAS).click()
+      const textoDigitado = $retorno.text();
+      cy.wrap(textoDigitado)
+        .should('exist', 'Conta goianinho 1');
+      cy.log(textoDigitado)
+      if ((textoDigitado.includes('Conta goianinho 1'))) {
+        cy.get(locators.CONTAS.DELETE_CONTAS('Conta goianinho 1')).click()
+        cy.get(locators.MENU.ENGRENAGEM).click()
+        cy.get(locators.MENU.OPCAO_CONTAS).click()
+        cy.get(locators.CONTAS.NAME_CONTA_FIELD).type('Conta goianinho 1', {delay:0})
+        cy.get(locators.CONTAS.BTN_SAVE_CONTA).click({timeout:30000})
+        cy.get(locators.MESSAGE_CONTA).should('contain.text', 'Conta inserida com sucesso!')
 
-      } else
+      } else {
 
+        cy.get(locators.MENU.ENGRENAGEM).click()
+        cy.get(locators.MENU.OPCAO_CONTAS).invoke('show').click()
+        cy.get(locators.CONTAS.NAME_CONTA_FIELD).type('Conta goianinho 1',{delay:0})
+        cy.get(locators.CONTAS.BTN_SAVE_CONTA).click()
+        cy.get(locators.MESSAGE_CONTA).should('contain.text', 'Conta inserida com sucesso!')
 
-        // cy.get(locators.MENU.ENGRENAGEM).click()
-        // cy.get(locators.MENU.OPCAO_CONTAS).invoke('show').click()
-      cy.get(locators.CONTAS.NAME_CONTA_FIELD).type('Conta goianinho 1')
-      cy.get(locators.CONTAS.BTN_SAVE_CONTA).click()
-      cy.get(locators.MESSAGE_CONTA).should('contain.text', 'Conta inserida com sucesso!')
+      }
     })
 
   })

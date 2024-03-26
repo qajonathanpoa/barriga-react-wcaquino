@@ -15,7 +15,7 @@ const locators = {
     CONTAS:{
         NAME_CONTA_FIELD:'[data-test="nome"]',
         TABELA_CONTAS: '.table tbody tr',
-        DELETE_CONTAS:  '.table tbody :contains("Conta goianinho 1")tr td .fa-trash-alt',
+        DELETE_CONTAS:  (nomeconta) =>{return `.table tbody :contains("${nomeconta}")tr td .fa-trash-alt` },
         BTN_SAVE_CONTA: '.btn'
     },
     MESSAGE_CONTA:'.toast-success > .toast-message'
