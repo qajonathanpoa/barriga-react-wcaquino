@@ -18,7 +18,8 @@ const locators = {
         DELETE_CONTAS:  (nomeconta) =>{return `.table tbody :contains("${nomeconta}")tr td .fa-trash-alt` },
         BTN_SAVE_CONTA: '.btn'
     },
-    MESSAGE_CONTA:'.toast-success > .toast-message'
+    MESSAGE_CONTA:'.toast-success > .toast-message',
+    MESSSAGE_DELETE:'.toast-success'
 }
 
 

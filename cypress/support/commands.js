@@ -23,3 +23,18 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import locators from "./locators_elements/locators"
+const url = Cypress.config('baseUrl')
+
+Cypress.Commands.add('realizarLogin', (email,password, mensagem) =>{
+    cy.visit({
+        url: url,
+        method: 'GET',
+        failOnStatusCode: true
+      })
+  
+    cy.get(locators.LOGIN.USER).type(email)
+    cy.get(locators.LOGIN.PASSWORD).type(password, { log: false })
+    cy.get(locators.LOGIN.ENTRAR_BTN).click()
+    cy.get(locators.MESSAGE_LOGIN).should('contain', mensagem)
+})

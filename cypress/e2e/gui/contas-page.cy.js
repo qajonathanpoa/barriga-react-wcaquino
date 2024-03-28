@@ -29,36 +29,30 @@ describe('Realizar teste funcional do cadastro e manipulação de contas', () =>
 
   })
 
-  it.only('Validar inserir conta com sucesso', () => {
+  it('Validar inserir conta com sucesso', () => {
 
+    cy.clicarMenuContas()
+    cy.retornarContaEdeletar()
+    cy.clicarMenuContas()  
+    cy.preencherNomeConta('Conta goianinho 2') 
+    cy.salvarConta()
+    cy.validarCriacaoConta('Conta inserida com sucesso!')
 
-    cy.get(locators.MENU.ENGRENAGEM).invoke('show').click()
-    cy.get(locators.MENU.OPCAO_CONTAS).click()
-
-    cy.get(locators.CONTAS.TABELA_CONTAS).then($retorno => {
-
-      const textoDigitado = $retorno.text();
-      cy.wrap(textoDigitado)
-        .should('exist', 'Conta goianinho 1');
-      cy.log(textoDigitado)
-      if ((textoDigitado.includes('Conta goianinho 1'))) {
-        cy.get(locators.CONTAS.DELETE_CONTAS('Conta goianinho 1')).click()
-        cy.get(locators.MENU.ENGRENAGEM).click()
-        cy.get(locators.MENU.OPCAO_CONTAS).click()
-        cy.get(locators.CONTAS.NAME_CONTA_FIELD).type('Conta goianinho 1', {delay:0})
-        cy.get(locators.CONTAS.BTN_SAVE_CONTA).click({timeout:30000})
-        cy.get(locators.MESSAGE_CONTA).should('contain.text', 'Conta inserida com sucesso!')
-
-      } else {
-
-        cy.get(locators.MENU.ENGRENAGEM).click()
-        cy.get(locators.MENU.OPCAO_CONTAS).invoke('show').click()
-        cy.get(locators.CONTAS.NAME_CONTA_FIELD).type('Conta goianinho 1',{delay:0})
-        cy.get(locators.CONTAS.BTN_SAVE_CONTA).click()
-        cy.get(locators.MESSAGE_CONTA).should('contain.text', 'Conta inserida com sucesso!')
-
-      }
     })
+
+    it.only('Validar exclusão de conta', ()=>{
+  
+      cy.clicarMenuContas()
+      cy.retornarContaEdeletar('Conta goiano 2', 'Conta excluída com sucesso!')
+      cy.preencherNomeConta('Conta goiano 2') 
+      cy.salvarConta()
+      cy.validarCriacaoConta('Conta inserida com sucesso!')
+      cy.clicarMenuContas()
+      cy.retornarContaEdeletar('Conta goiano 2', 'Conta excluída com sucesso!')
+      
+   
+   
+  })
 
   })
 
@@ -76,5 +70,5 @@ describe('Realizar teste funcional do cadastro e manipulação de contas', () =>
     contasPage.validarMessageConta('Conta excluída com sucesso!')
   })
 
-})
+
 
