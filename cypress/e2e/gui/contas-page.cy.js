@@ -54,8 +54,6 @@ describe('Realizar teste funcional do cadastro e manipulação de contas', () =>
    
   })
 
-  })
-
   it('Validar editar conta com sucesso', () => {
     contasPage.clicarMenu()
     contasPage.clicarMenuContas()
@@ -69,6 +67,20 @@ describe('Realizar teste funcional do cadastro e manipulação de contas', () =>
     contasPage.buscareDeletarContas('Conta goianinho 2')
     contasPage.validarMessageConta('Conta excluída com sucesso!')
   })
+  it('Não deve criar conta com mesmo nome', () => {
+    contasPage.clicarMenu()
+    contasPage.clicarMenuContas()
+    contasPage.digitarNomeConta('Conta para alterar')
+    contasPage.clicarSaveContaButton()
+    contasPage.validarMessageContaDuplicada('code 400')
+    
 
+  })
+
+  it('Deve inserir movimentação', () => {
+  cy.clicarMenuMovimentacao()
+ 
+  })
+  })
 
 

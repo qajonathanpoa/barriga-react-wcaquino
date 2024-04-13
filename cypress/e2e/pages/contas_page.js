@@ -21,6 +21,9 @@ class ContasPage {
     validarMessageConta(message) {
         cy.get(contasPageElements.toastMessageConta()).should('contain.text', message)
     }
+    validarMessageContaDuplicada(message) {
+        cy.get(contasPageElements.toastContaError()).should('contain.text', message)
+    }
     buscareEditarContas(nomeconta) {
         cy.get(contasPageElements.editarContas(nomeconta)).click()
     }

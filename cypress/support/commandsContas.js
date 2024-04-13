@@ -19,6 +19,9 @@ Cypress.Commands.add('salvarConta', () => {
 Cypress.Commands.add('validarCriacaoConta', (mensagem) => {
     cy.get(locators.MESSAGE_CONTA).should('contain.text', mensagem)
 })
+Cypress.Commands.add('clicarMenuMovimentacao',()=>{
+    cy.get(locators.MENU.MOVIMENTACAO).click()
+})
 
 
 Cypress.Commands.add('retornarContaEdeletar', (nomeConta,mensagemConfirmacao) => {

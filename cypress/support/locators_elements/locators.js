@@ -10,6 +10,7 @@ const locators = {
     MENU: {
         ENGRENAGEM: '[data-test=menu-settings]',
         OPCAO_CONTAS:"[href='/contas']",
+        MOVIMENTACAO:'[data-test=menu-movimentacao]'
        
     },
     CONTAS:{
@@ -19,7 +20,11 @@ const locators = {
         BTN_SAVE_CONTA: '.btn'
     },
     MESSAGE_CONTA:'.toast-success > .toast-message',
-    MESSSAGE_DELETE:'.toast-success'
+    MESSSAGE_DELETE:'.toast-success',
+    MOVIMENTACAO:{
+        DESCRICAO:'#descricao'
+
+    }
 }
 
 
