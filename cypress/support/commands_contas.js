@@ -19,23 +19,20 @@ Cypress.Commands.add('salvarConta', () => {
 Cypress.Commands.add('validarCriacaoConta', (mensagem) => {
     cy.get(locators.MESSAGE_CONTA).should('contain.text', mensagem)
 })
-Cypress.Commands.add('clicarMenuMovimentacao',()=>{
-    cy.get(locators.MENU.MOVIMENTACAO).click()
-})
 
 
-Cypress.Commands.add('retornarContaEdeletar', (nomeConta,mensagemConfirmacao) => {
+Cypress.Commands.add('retornarContaEdeletar', (nome_conta,mensagem_confirmacao) => {
 
 
     cy.get(locators.CONTAS.TABELA_CONTAS).then($retorno => {
 
         const textoElementsTable = $retorno.text();
         cy.wrap(textoElementsTable)
-            .should('exist', nomeConta);
+            .should('exist', nome_conta);
 
-        if ((textoElementsTable.includes(nomeConta))) {
-            cy.get(locators.CONTAS.DELETE_CONTAS(nomeConta)).click()
-            cy.get(locators.MESSSAGE_DELETE).should('contain', mensagemConfirmacao)
+        if ((textoElementsTable.includes(nome_conta))) {
+            cy.get(locators.CONTAS.DELETE_CONTAS(nome_conta)).click()
+            cy.get(locators.MESSAGE_CONTA).should('contain', mensagem_confirmacao)
 
 
         } else {

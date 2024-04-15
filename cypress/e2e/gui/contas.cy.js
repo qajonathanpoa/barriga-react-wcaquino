@@ -32,7 +32,7 @@ describe('Realizar teste funcional do cadastro e manipulação de contas', () =>
   it('Validar inserir conta com sucesso', () => {
 
     cy.clicarMenuContas()
-    cy.retornarContaEdeletar()
+    cy.retornarContaEdeletar('Conta goianinho 2','Conta excluída com sucesso!')
     cy.clicarMenuContas()  
     cy.preencherNomeConta('Conta goianinho 2') 
     cy.salvarConta()
@@ -40,7 +40,7 @@ describe('Realizar teste funcional do cadastro e manipulação de contas', () =>
 
     })
 
-    it.only('Validar exclusão de conta', ()=>{
+    it('Validar exclusão de conta', ()=>{
   
       cy.clicarMenuContas()
       cy.retornarContaEdeletar('Conta goiano 2', 'Conta excluída com sucesso!')
@@ -55,16 +55,17 @@ describe('Realizar teste funcional do cadastro e manipulação de contas', () =>
   })
 
   it('Validar editar conta com sucesso', () => {
+
     contasPage.clicarMenu()
     contasPage.clicarMenuContas()
-    contasPage.digitarNomeConta('Conta goianinho 1')
+    contasPage.digitarNomeConta('Conta goianinho 12')
     contasPage.clicarSaveContaButton()
     contasPage.validarMessageConta('Conta inserida com sucesso!')
-    contasPage.buscareEditarContas('Conta goianinho 1')
-    contasPage.digitarNomeConta('Conta goianinho 2')
+    contasPage.buscareEditarContas('Conta goianinho 12')
+    contasPage.digitarNomeConta('Conta goianinho 13')
     contasPage.clicarSaveContaButton()
     contasPage.validarMessageConta('Conta atualizada com sucesso!')
-    contasPage.buscareDeletarContas('Conta goianinho 2')
+    contasPage.buscareDeletarContas('Conta goianinho 13','Conta excluída com sucesso!')
     contasPage.validarMessageConta('Conta excluída com sucesso!')
   })
   it('Não deve criar conta com mesmo nome', () => {
@@ -77,10 +78,6 @@ describe('Realizar teste funcional do cadastro e manipulação de contas', () =>
 
   })
 
-  it('Deve inserir movimentação', () => {
-  cy.clicarMenuMovimentacao()
- 
-  })
   })
 
 

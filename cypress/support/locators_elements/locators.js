@@ -8,6 +8,7 @@ const locators = {
     },
     MESSAGE_LOGIN: '.toast-message',
     MENU: {
+        HOME:"[data-test='menu-home']",
         ENGRENAGEM: '[data-test=menu-settings]',
         OPCAO_CONTAS:"[href='/contas']",
         MOVIMENTACAO:'[data-test=menu-movimentacao]'
@@ -20,11 +21,21 @@ const locators = {
         BTN_SAVE_CONTA: '.btn'
     },
     MESSAGE_CONTA:'.toast-success > .toast-message',
-    MESSSAGE_DELETE:'.toast-success',
+    MESSAGE_DELETE:'.toast-success',
     MOVIMENTACAO:{
-        DESCRICAO:'#descricao'
+        DESCRICAO:'#descricao',
+        VALOR_FIELD: '.container [placeholder*="Valor"]',
+        INTERESSADO_FIELD:'.container [placeholder*="Interessado..."]',
+        BTN_SALVAR:".container [alt*='Salvar']",
+        COMBO_CONTA:'[data-test="conta"]',
+        STATUS_MOVIMENTACAO:'[data-test="status"]',
+        TOAST_SUCESSO: '.toast-success'
 
-    }
+    },
+    HOME:{
+        TABELA_SALDO:(nomeconta) =>{return `.table-bordered tbody :contains('${nomeconta}')` }
+
+    },
 }
 
 
