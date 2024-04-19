@@ -24,9 +24,9 @@ Cypress.Commands.add('validarCriacaoConta', (mensagem) => {
 Cypress.Commands.add('retornarContaEdeletar', (nome_conta,mensagem_confirmacao) => {
 
 
-    cy.get(locators.CONTAS.TABELA_CONTAS).then($retorno => {
+    cy.get(locators.CONTAS.TABELA_CONTAS).then($retorno=> {
 
-        const textoElementsTable = $retorno.text();
+        var textoElementsTable = $retorno.text();
         cy.wrap(textoElementsTable)
             .should('exist', nome_conta);
 

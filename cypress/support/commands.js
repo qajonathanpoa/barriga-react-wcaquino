@@ -25,8 +25,10 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 import locators from "./locators_elements/locators"
 const url = Cypress.config('baseUrl')
+const email = Cypress.env('USERNAME')
+const senha = Cypress.env('PASSWORD')
 
-Cypress.Commands.add('realizarLogin', (email,password, mensagem) =>{
+Cypress.Commands.add('realizarLogin', (mensagem) =>{
     cy.visit({
         url: url,
         method: 'GET',
@@ -34,7 +36,7 @@ Cypress.Commands.add('realizarLogin', (email,password, mensagem) =>{
       })
   
     cy.get(locators.LOGIN.USER).type(email)
-    cy.get(locators.LOGIN.PASSWORD).type(password, { log: false })
+    cy.get(locators.LOGIN.PASSWORD).type(senha, { log: false })
     cy.get(locators.LOGIN.ENTRAR_BTN).click()
     cy.get(locators.MESSAGE_LOGIN).should('contain', mensagem)
 })

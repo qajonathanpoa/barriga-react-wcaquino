@@ -18,6 +18,7 @@ import './commands'
 import './commands_contas'
 import './commands_movimentacao'
 import './commands_home'
+import './commands_extrato'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

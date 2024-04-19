@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
 
-import LoginPage from "../pages/login_page"
-import loc from "../../support/locators_elements/locators"
-const loginPage = new LoginPage()
+// import LoginPage from "../pages/login_page"
+// import loc from "../../support/locators_elements/locators"
+// const loginPage = new LoginPage()
 
 describe('Realizar teste funcional do login', function() {
 
@@ -23,7 +23,7 @@ describe('Realizar teste funcional do login', function() {
   // })
   //Exemplo de testes usando o modelo de locators encapsulados atraves de variaveis
   it('Validar login com sucesso', function () {
-  cy.realizarLogin('kline16@gmail.com', 'cwi@22022021', 'Bem vindo, Jonathan cavalcanti!')
+  cy.realizarLogin('Bem vindo, Jonathan cavalcanti!')
 
   })
 

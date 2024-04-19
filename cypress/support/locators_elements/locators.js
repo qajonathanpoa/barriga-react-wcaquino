@@ -11,7 +11,8 @@ const locators = {
         HOME:"[data-test='menu-home']",
         ENGRENAGEM: '[data-test=menu-settings]',
         OPCAO_CONTAS:"[href='/contas']",
-        MOVIMENTACAO:'[data-test=menu-movimentacao]'
+        MOVIMENTACAO:'[data-test=menu-movimentacao]',
+        EXTRATO: '[data-test="menu-extrato"]'
        
     },
     CONTAS:{
@@ -33,8 +34,12 @@ const locators = {
 
     },
     HOME:{
-        TABELA_SALDO:(nomeconta) =>{return `.table-bordered tbody :contains('${nomeconta}')` }
+        TABELA_SALDO:(nomeConta) =>{return `.table-bordered tbody :contains('${nomeConta}')` }
 
+    },
+    EXTRATO:{
+        TABLE_EXTRATO:(nomeMovimentacao) =>{return `.list-group li:contains('${nomeMovimentacao}')` },
+        REMOVER_MOVIMENTACAO:(nomeMovimentacao)=>{return `.list-group li :contains('${nomeMovimentacao}') .fa-trash-alt`}
     },
 }
 

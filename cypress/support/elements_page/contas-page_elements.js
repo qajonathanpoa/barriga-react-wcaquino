@@ -5,6 +5,7 @@ class ContasPageElements{
     btnSaveConta = () =>{return '.btn'}
     toastMessageConta = () =>{return '.toast-success > .toast-message'}
     toastContaError = () =>{return '.toast-error > .toast-message'}
+    tabelaContas = () =>{return '.table tbody tr'}
     editarContas = (nomeconta) =>{return `.table tbody :contains("${nomeconta}")tr td .fa-edit` }
     deletarContas = (nomeconta) =>{return `.table tbody :contains("${nomeconta}")tr td .fa-trash-alt` }
 
