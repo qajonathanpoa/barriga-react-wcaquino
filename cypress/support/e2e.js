@@ -14,7 +14,9 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
+import '@bahmutov/cy-api'
 import './commands'
+import './commands_api'
 import './commands_contas'
 import './commands_movimentacao'
 import './commands_home'
